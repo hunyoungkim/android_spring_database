@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.member">
+<select id="login" resultType="MemberVO">
+select * from member
+where m_id=#{m_id}
+</select>
+
+<select id="memberall" resultType="MemberVO">
+select * from member
+</select>
+
+<insert id="minsert" parameterType="MemberVO">
+		insert
+		into member(m_name, m_id, m_password, m_email, m_phonenumber, m_address)
+		values(#{m_name}, #{m_id}, #{m_password}, #{m_email}, #{m_phonenumber}, #{m_address})
+	</insert>
+
+
+</mapper>
