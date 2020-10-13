@@ -21,10 +21,9 @@
 ![Screenshot_20201002-160724 - 복사본](https://user-images.githubusercontent.com/72241081/94900090-5e31de80-04cf-11eb-9b95-bdff8b620e5f.png)
 
 
-SQL문------------------------------------------------------------------------------------------------------------
+SQL문---------------------------------------------------------------------------------
 
   CREATE TABLE "SCOTT"."JBOARD" 
-
    (	"NUM" NUMBER, 
 	"M_ID" VARCHAR2(30 BYTE), 
 	"SUBJECT" VARCHAR2(100 BYTE), 
@@ -45,4 +44,5 @@ SQL문--------------------------------------------------------------------------
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "USERS" ;
-------------------------------------------------------------------------------------------------------------------
+  
+---------------------------------------------------------------------------------------
