@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.Qna">
+
+<select id="mselectAll" resultType="BoardVO"> 
+
+<![CDATA[
+select * from (select rownum rnum, num, m_id, subject, content,
+attached_file, answer_num, answer_lev, answer_seq, read_count, write_date
+ from (select * from jboard order by answer_num desc, answer_seq asc))
+
+]]>
+
+</select>
+<select id="mnumcount" resultType="String">
+		select
+		max(num)
+		from jboard
+</select>
+
+<insert id="madd" parameterType="BoardVO">
+		insert
+		into jboard (num, m_id, subject, content, attached_file, answer_num,
+		answer_lev,answer_seq,read_count,write_date)
+		values(#{num}, #{m_id,jdbcType=VARCHAR}, #{subject}, #{content}, #{attached_file,jdbcType=VARCHAR},
+		#{num}, #{answer_lev},#{answer_seq},#{read_count},sysdate)
+	
+</insert>
+<update id="mupdate" parameterType="BoardVO">
+		update jboard set m_id=#{m_id}, subject=#{subject},
+		content=#{content},attached_file=#{attached_file,jdbcType=VARCHAR}
+		where num=#{num}
+</update>
+	<delete id="mdelete" parameterType="int">
+delete from jboard where num=#{num}
+</delete>
+</mapper>

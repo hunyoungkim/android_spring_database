@@ -24,13 +24,14 @@ public class LoginActivity extends AppCompatActivity {
     private AlertDialog dialog;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle("스프링 DB 연동");
         setContentView(R.layout.activity_login);
 
         //회원가입 이동
-        TextView registerButton = (TextView) findViewById(R.id.memberaddButton);
-        registerButton.setOnClickListener(new View.OnClickListener(){
+        TextView registerButton = findViewById(R.id.memberaddButton);
+        registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent registerIntent = new Intent(LoginActivity.this, RegisterActivity.class);
@@ -40,77 +41,78 @@ public class LoginActivity extends AppCompatActivity {
 
         });
 
-        final EditText idText = (EditText) findViewById(R.id.idText);
-        final EditText passwordText = (EditText) findViewById(R.id.passwordText);
-        final Button loginButton = (Button) findViewById(R.id.loginButton);
+        final EditText idText =  findViewById(R.id.idText);
+        final EditText passwordText = findViewById(R.id.passwordText);
+        final Button loginButton = findViewById(R.id.loginButton);
 
         idText.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
-                    return true;
-                }
-                return false;
+                return (event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER);
             }
         });
         passwordText.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
-                    return true;
-                }
-                return false;
+                return (event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER);
             }
         });
-        loginButton.setOnClickListener(new View.OnClickListener(){
+        loginButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
                 final String userID = idText.getText().toString();
                 String userPassword = passwordText.getText().toString();
 
+                if (userID.equals("") || userPassword.equals("")) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                    dialog = builder.setMessage("빈 칸 없이 입력해주세요.")
+                            .setNegativeButton("확인", null)
+                            .create();
+                    dialog.show();
+                    return;
+                }
+
                 SharedPreferences user = getSharedPreferences("userID", Activity.MODE_PRIVATE);
                 SharedPreferences.Editor editor = user.edit();
                 editor.putString("userID", userID);
-                editor.commit();
+                editor.apply();
 
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        try
-                        {
+                        try {
                             JSONObject jsonResponse = new JSONObject(response);
 
                             boolean success = jsonResponse.getBoolean("success");
-                            if(success) {
+                            if (success) {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
                                 dialog = builder.setMessage("로그인에 성공했습니다.")
-                                        .setPositiveButton("확인",null)
+                                        .setPositiveButton("확인", null)
                                         .create();
                                 dialog.show();
-                                Intent intent = new Intent(LoginActivity.this, MemberInfoActivity.class);
-                                //intent.putExtra("userID",userID);
+                                String m_id = jsonResponse.getString("m_id");
 
+                                SaveSharedPreference.setUserId(LoginActivity.this, m_id);
+
+                                Intent intent = new Intent(LoginActivity.this, MemberInfoActivity.class);
                                 intent.putExtra("json", jsonResponse.toString());
                                 LoginActivity.this.startActivity(intent);
                                 finish();
-                            }
-                            else {
+                            } else {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
                                 dialog = builder.setMessage("로그인에 실패했습니다.")
-                                        .setNegativeButton("다시 시도",null)
+                                        .setNegativeButton("다시 시도", null)
                                         .create();
                                 dialog.show();
                             }
 
-                        }
-                        catch (Exception e)
-                        {
+                        } catch (Exception e) {
                             e.printStackTrace();
                         }
                     }
                 };
-                LoginRequest loginRequest = new LoginRequest(userID,userPassword,responseListener);
+                LoginRequest loginRequest = new LoginRequest(userID, userPassword, responseListener);
                 RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
                 queue.add(loginRequest);
 
@@ -119,14 +121,15 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+
+
     @Override
     protected void onStop() {
         super.onStop();
-        if(dialog != null)
-        {
-            dialog.dismiss();;
+        if (dialog != null) {
+            dialog.dismiss();
             dialog = null;
         }
     }
-    }
+}
 

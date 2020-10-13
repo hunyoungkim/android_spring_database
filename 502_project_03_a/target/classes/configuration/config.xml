@@ -4,6 +4,7 @@
 <typeAliases>
 <!--  별칭 사용 -->
 <typeAlias alias="MemberVO" type="android.conn.spring.VO.MemberVO"/>
+<typeAlias alias="BoardVO" type="android.conn.spring.VO.BoardVO"/>
 </typeAliases>
 
 

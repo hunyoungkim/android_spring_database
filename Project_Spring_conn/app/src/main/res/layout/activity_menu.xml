@@ -4,6 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
+
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="match_parent"
@@ -19,82 +21,169 @@
             android:id="@android:id/tabcontent"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
             <LinearLayout
                 android:id="@+id/tabProduct"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="#f0f000"
-                android:orientation="vertical">
-
+                android:orientation="vertical"
+                >
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="추후 구현 예정입니다.."
+                    android:textAlignment="center"
                     android:gravity="center"
-                    android:text="추후 개발 예정 입니다."
-                    android:textSize="60dp" />
+                    android:textSize="20dp"
+                    android:textColor="#ff0000"/>
+
+
 
             </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/tabQna"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <Button
+                        android:id="@+id/logout"
+                        android:layout_width="65dp"
+                        android:layout_weight="1"
+                        android:layout_height="40dp"
+                        android:hint="LOGOUT"
+                        android:textSize="8dp" />
+
+
+
+                    <Button
+                        android:id="@+id/updatebtn"
+                        android:layout_width="55dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:hint="새로고침"
+                        android:textSize="8dp"/>
+                    <Button
+                        android:hint="게시글 작성"
+                        android:id="@+id/writebtn"
+                        android:layout_width="65dp"
+                        android:layout_weight="1"
+                        android:layout_height="40dp"
+                        android:layout_gravity="left"
+                        android:textSize="8dp" />
+
+                </LinearLayout>
+
+                <ListView
+                    android:id="@+id/listview1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+            </LinearLayout>
+
+
 
             <LinearLayout
                 android:id="@+id/tabMember"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#ff8000"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/m_id"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:text="ID :"
-                    android:textSize="20dp" />
-
-                <TextView
-                    android:id="@+id/m_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:text="NAME :"
-                    android:textSize="20dp" />
-
-                <TextView
-                    android:id="@+id/m_email"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:text="E-MAIL :"
-                    android:textSize="20dp" />
-
-                <TextView
-                    android:id="@+id/m_phonenumber"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:text="PHONE :"
-                    android:textSize="20dp" />
-
-                <TextView
-                    android:id="@+id/m_address"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:text="ADDRESS :"
-                    android:textSize="20dp" />
-
-            </LinearLayout>
-
-
+                android:background="#FFFFFF"
+                android:orientation="vertical"
+                android:layout_marginTop="5dp">
             <LinearLayout
-                android:id="@+id/tabQna"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#f0f000"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="추후 개발 예정 입니다."
-                    android:textSize="60dp" />
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/logout1"
+                    android:layout_width="110dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="end"
+                    android:hint="LOGOUT"
+                    android:textSize="8dp" />
             </LinearLayout>
+
+
+                    <TextView
+                        android:id="@+id/m_id"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:text="ID :"
+                        android:textSize="20dp"
+                        android:background="#ff8000"/>
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="8dp"
+                        android:background="#ffffff" />
+
+                    <TextView
+                        android:id="@+id/m_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:text="NAME :"
+                        android:textSize="20dp"
+                        android:background="#ff8000"/>
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="8dp"
+                        android:background="#ffffff" />
+
+                    <TextView
+                        android:id="@+id/m_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:text="E-MAIL :"
+                        android:textSize="20dp"
+                        android:background="#ff8000"/>
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="8dp"
+                        android:background="#ffffff" />
+
+                    <TextView
+                        android:id="@+id/m_phonenumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:text="PHONE :"
+                        android:textSize="20dp"
+                        android:background="#ff8000"/>
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="8dp"
+                        android:background="#ffff" />
+
+                    <TextView
+                        android:id="@+id/m_address"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:text="ADDRESS :"
+                        android:textSize="20dp"
+                        android:background="#ff8000"/>
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="8dp"
+                        android:background="#ffffff" />
+
+
+            </LinearLayout>
+
+
+
+
 
         </FrameLayout>
     </LinearLayout>

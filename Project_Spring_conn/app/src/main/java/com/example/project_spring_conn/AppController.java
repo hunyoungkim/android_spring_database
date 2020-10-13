@@ -1,6 +1,7 @@
 package com.example.project_spring_conn;
 
 import android.app.Application;
+import android.content.Context;
 import android.text.TextUtils;
 
 import com.android.volley.Request;
@@ -10,10 +11,12 @@ import com.android.volley.toolbox.Volley;
 
 public class AppController extends Application {
 
+    private static AppController minstance;
+
     public static final String TAG = AppController.class
             .getSimpleName();
 
-    private RequestQueue mRequestQueue;
+    private RequestQueue mRequestQueue, bRequestQueue;
     private ImageLoader mImageLoader;
 
     private static AppController mInstance;
@@ -24,8 +27,24 @@ public class AppController extends Application {
         mInstance = this;
     }
 
+    public AppController() {
+
+    }
+    public static AppController getInstance(Context context) {
+       if(minstance == null)
+            minstance = new AppController(context);
+        return minstance;
+    }
+
+    AppController(Context context) {
+        bRequestQueue = Volley.newRequestQueue(context);
+    }
+
     public static synchronized AppController getInstance() {
         return mInstance;
+    }
+    public RequestQueue getbRequestQueue() {
+        return bRequestQueue;
     }
 
     public RequestQueue getRequestQueue() {
@@ -61,5 +80,6 @@ public class AppController extends Application {
             mRequestQueue.cancelAll(tag);
         }
     }
+
 }
 

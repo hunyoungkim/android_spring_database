@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Project_Spring_conn</string>
+    <string name="url_get_board">http://192.168.123.104:8088/span/boardlist</string>
 </resources>
