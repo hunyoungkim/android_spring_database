@@ -21,7 +21,7 @@
 ![Screenshot_20201002-160724 - 복사본](https://user-images.githubusercontent.com/72241081/94900090-5e31de80-04cf-11eb-9b95-bdff8b620e5f.png)
 
 
-SQL문---------------------------------------------------------------------------------
+Board SQL문---------------------------------------------------------------------------------
 
   CREATE TABLE "SCOTT"."JBOARD" 
    (	"NUM" NUMBER, 
@@ -45,4 +45,24 @@ SQL문--------------------------------------------------------------------------
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "USERS" ;
   
+---------------------------------------------------------------------------------------
+
+Member SQL문---------------------------------------------------------------------------------
+  CREATE TABLE "SCOTT"."MEMBER" 
+   (	"M_NAME" VARCHAR2(20 BYTE), 
+	"M_ID" VARCHAR2(30 BYTE) NOT NULL ENABLE, 
+	"M_PASSWORD" VARCHAR2(30 BYTE), 
+	"M_EMAIL" VARCHAR2(50 BYTE), 
+	"M_PHONENUMBER" VARCHAR2(50 BYTE), 
+	"M_ADDRESS" VARCHAR2(150 BYTE), 
+	 CONSTRAINT "MEMBER_PK" PRIMARY KEY ("M_ID")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS"  ENABLE
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS" ;
 ---------------------------------------------------------------------------------------
